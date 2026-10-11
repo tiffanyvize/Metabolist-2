@@ -2,110 +2,147 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>METABOLIST | Your Event, Engineered.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>METABOLIST | Aime Core Engine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0b0f19; color: #f3f4f6; -webkit-tap-highlight-color: transparent; }
-        .logo-glow { filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.4)); }
+        .logo-glow { filter: drop-shadow(0 0 12px rgba(16, 185, 129, 0.3)); }
+        .safe-bottom { padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+        input[type="checkbox"]:checked + span { color: #10b981; text-decoration: line-through; }
     </style>
 </head>
-<body class="p-0 m-0">
+<body class="flex flex-col min-h-screen">
 
-    <!-- Sticky Header with Logo -->
-    <header class="sticky top-0 z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800 px-5 py-3.5 flex items-center justify-between">
-        <img src="image_4.png" alt="METABOLIST Logo" class="h-9 w-auto object-contain logo-glow" />
-        <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 font-medium">Aime OS: Active</span>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-gray-950/90 backdrop-blur-md border-b border-gray-800 p-4 flex items-center justify-between">
+        <img src="image_4.png" alt="METABOLIST" class="h-8 w-auto object-contain logo-glow" />
+        <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-950 text-emerald-400 border border-emerald-800 font-medium">Aime OS: Active</span>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-lg mx-auto p-5 pb-24 space-y-8">
-
-        <!-- Hero Section -->
-        <section class="text-center py-5 space-y-4">
-            <span class="inline-block px-3 py-1 mb-2 text-[10px] font-bold tracking-widest text-emerald-400 uppercase bg-emerald-950/80 border border-emerald-800/60 rounded-full">Medical-Grade Fat Loss Science</span>
-            <h1 class="text-3xl font-extrabold text-white leading-tight">Got an Event Coming Up?<br>Got 14 Days?<br>Done.</h1>
-            <p class="text-xs text-gray-400 leading-relaxed px-2">Traditional "crash diets" wreck your metabolism, destroy your lean muscle, and guarantee a 5kg rebound the second you enjoy a celebration meal. Metabolist is different. We run the math, not the starvation.</p>
-        </section>
-
-        <!-- Product Presentation -->
-        <section class="bg-gray-900 border border-gray-800 rounded-2xl p-5 space-y-4 shadow-xl">
-            <h2 class="text-sm font-bold text-white mb-2">METABOLIST (TEB) One-Time 14-Day Sprint</h2>
-            <p class="text-[11px] text-gray-400">Powered by the precise bioenergetics of The Eating Bible. This is your target physique, locked in with zero guesswork. We manage the math—so you don't have to starvation guess.</p>
+    <!-- App Viewport -->
+    <main id="app-viewport" class="flex-1 max-w-lg mx-auto w-full p-4 pb-28 space-y-4 overflow-y-auto">
+        
+        <!-- Tab 1: MEALS & FASTING (Default) -->
+        <div id="tab-meals" class="space-y-4">
             
-            <div class="space-y-3 pt-2 text-[10px]">
-                <div class="p-3 bg-gray-800 rounded-xl flex items-center justify-between">
-                    <span>Target Timeframe</span>
-                    <span class="text-emerald-400 font-bold">Clinical 14-Day Windows</span>
+            <!-- Schedule Toggle -->
+            <div class="bg-gray-900 border border-gray-800 p-1 rounded-2xl flex items-center space-x-1">
+                <button onclick="switchSchedule(1)" id="b1" class="flex-1 py-2 text-xs font-semibold rounded-xl bg-emerald-500 text-gray-950 transition-all">Option 1 (12pm-8pm)</button>
+                <button onclick="switchSchedule(2)" id="b2" class="flex-1 py-2 text-xs font-semibold rounded-xl text-gray-400">Option 2 (1pm-9pm)</button>
+            </div>
+
+            <!-- Fasting Timer Widget -->
+            <div class="bg-gradient-to-br from-gray-900 via-gray-900 to-emerald-950/40 border border-emerald-800 rounded-2xl p-5 text-center shadow-lg">
+                <div class="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">AMPK AUTOPHAGY CLOCK</div>
+                <div id="time-display" class="text-4xl font-mono font-bold text-white my-1.5">16:00:00</div>
+                <p class="text-[11px] text-gray-400 mb-3">16:8 Window Active (Lipid Oxidation)</p>
+                <div class="flex justify-center space-x-2">
+                    <button id="p1-btn" onclick="startClock(16)" class="px-5 py-2 rounded-xl bg-emerald-500 text-gray-950 text-xs font-extrabold shadow-md hover:bg-emerald-400">Start Fast</button>
+                    <button id="p2-btn" onclick="pauseClock()" class="px-5 py-2 rounded-xl bg-gray-800 text-gray-300 text-xs font-semibold hover:bg-gray-700">Pause</button>
                 </div>
-                <div class="p-3 bg-gray-800 rounded-xl flex items-center justify-between">
-                    <span>Food Requirement</span>
-                    <span class="text-blue-400 font-bold">YOUR Fridge. YOUR Pantry.</span>
-                </div>
-                <div class="p-3 bg-gray-800 rounded-xl flex items-center justify-between">
-                    <span>Exercise Requirement</span>
-                    <span class="text-purple-400 font-bold">YOUR Subjective Fitness & Joint Safety.</span>
-                </div>
-                <div class="p-3 bg-gray-800 rounded-xl flex items-center justify-between">
-                    <span>Rebound Protection</span>
-                    <span class="text-emerald-400 font-bold">Tier 4 Eucaloric Lock-In</span>
-                </div>
+            </div>
+
+            <!-- Sprints (Event Countdown) -->
+            <div id="meals-schedule-view" class="space-y-3 pt-1">
+                <!-- Dynamically populated by AimeOS -->
             </div>
         </div>
-
-        <!-- Conversion Cards -->
-        <section class="space-y-4 pt-4">
-            <h3 class="text-xs font-semibold tracking-wider text-gray-500 px-1">Choose Your Immediate 14-Day Protocol:</h3>
-
-            <!-- Standard Sprint -->
-            <div class="bg-gray-900 border border-gray-800 rounded-2xl p-5 shadow-lg relative">
-                <div class="flex items-center justify-between">
-                    <h4 class="text-sm font-bold text-white mb-1">METABOLIST Standard 14-Day Sprint</h4>
-                    <span class="text-[9px] px-1.5 py-0.5 bg-emerald-950 text-emerald-400 rounded-full border border-emerald-800">High-Velocity Lipid Oxidation</span>
-                </div>
-                <p class="text-[11px] text-gray-400 mb-3 pt-1">The bioenergetic protocol designed to achieve specific transformation goals in 14 days using ONLY your available household ingredients. Zero economic barrier.</p>
-                <a href="#payment_link_r49" class="w-full mt-3 py-3 bg-emerald-500 text-gray-950 text-center rounded-xl text-xs font-extrabold shadow-md hover:bg-emerald-400 transition-all flex items-center justify-center space-x-2">
-                    <span>Claim Your Personalized Plan (R49.00 Once-Off)</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-
-            <!-- Tiffany Adaptive (Joint Safety) -->
-            <div class="bg-gradient-to-br from-gray-900 via-gray-900 to-blue-950/40 border border-blue-800/40 rounded-2xl p-5 shadow-lg">
-                <div class="flex items-center justify-between">
-                    <h4 class="text-sm font-bold text-white mb-1">METABOLIST "Tiffany" Adaptive Protocol</h4>
-                    <span class="text-[9px] px-1.5 py-0.5 bg-blue-950 text-blue-400 rounded-full border border-blue-800">Zero-Axial Joint Safety</span>
-                </div>
-                <p class="text-[11px] text-gray-400 mb-3 pt-1">The clinical 14-day blueprint for users with known joint constraints (back/knee/lumbar injuries), utilizing safe movement vectors (Tiffany baseline) to force fat loss with ZERO joint shear.</p>
-                <a href="#payment_link_r49" class="w-full mt-3 py-3 bg-blue-500 text-gray-950 text-center rounded-xl text-xs font-extrabold shadow-md hover:bg-blue-400 transition-all flex items-center justify-center space-x-2">
-                    <span>Claim Your personalized Plan (R49.00 Once-Off)</span>
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 5l7 7-7 7M5 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-        </section>
-
+        
     </main>
 
-    <!-- Bottom Navigation Bar for Mobile -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-800 px-6 py-2 safe-bottom flex justify-around items-center z-50">
-        <button class="flex flex-col items-center text-emerald-400">
-            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-            <span class="text-[10px] font-medium">Schedule</span>
-        </button>
-        <button class="flex flex-col items-center text-gray-400 hover:text-white">
-            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-            <span class="text-[10px] font-medium">Tracker</span>
-        </button>
-        <button class="flex flex-col items-center text-gray-400 hover:text-white">
-            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-            <span class="text-[10px] font-medium">Bioenergetics</span>
-        </button>
-        <button class="flex flex-col items-center text-gray-400 hover:text-white">
-            <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-            <span class="text-[10px] font-medium">Profile</span>
-        </button>
-    </nav>
+    <!-- Tab Engine -->
+    <script>
+        // System Data & Mandates
+        const rawSchedule = {
+            1: [
+                { time: "07:00 AM", title: "Wake & Hydrate", desc: "500ml Water + Pinch Sea Salt. Black Coffee + 125ml Macadamia Milk.", tag: "AMPK Prime" },
+                { time: "12:00 PM", title: "Meal 1 (Break Fast)", desc: "100g Salmon Sashimi + 1 Slice Brown Low-GI Bread.", tag: "RAFL High-Satiety" },
+                { time: "03:30 PM", title: "Mid-Day Shake", desc: "SlenderWonder Protein Plus (+ max 30g frozen berries).", tag: "Leucine Pulse" },
+                { time: "06:45 PM", title: "Somatic Biokinetics", desc: "20 Min Impulse Bike (Zone 2) + 15 Min Wall Pilates Series.", tag: "Zero Shear" },
+                { time: "07:30 PM", title: "Meal 2 (Final Refuel)", desc: "30g Soya Isolate + 125ml Macadamia Milk.", tag: "mTORC1 Lock" },
+                { time: "08:00 PM", title: "Fasting Begins", desc: "16-Hour Autophagy and Cellular Repair Phase.", tag: "TFEB Autophagy" }
+            ],
+            2: [
+                { time: "07:00 AM", title: "Wake & Hydrate", desc: "500ml Water + Pinch Sea Salt. Black Coffee + 125ml Macadamia Milk.", tag: "AMPK Prime" },
+                { time: "01:00 PM", title: "Meal 1 (Break Fast)", desc: "100g Salmon Sashimi + 1 Slice Brown Low-GI Bread.", tag: "RAFL High-Satiety" },
+                { time: "04:30 PM", title: "Mid-Day Shake", desc: "SlenderWonder Protein Plus (+ max 30g frozen berries).", tag: "Leucine Pulse" },
+                { time: "07:45 PM", title: "Somatic Biokinetics", desc: "20 Min Impulse Bike (Zone 2) + 15 Min Wall Pilates Series.", tag: "Zero Shear" },
+                { time: "08:30 PM", title: "Meal 2 (Final Refuel)", desc: "30g Soya Isolate + 125ml Macadamia Milk.", tag: "mTORC1 Lock" },
+                { time: "09:00 PM", title: "Fasting Begins", desc: "16-Hour Autophagy and Cellular Repair Phase.", tag: "TFEB Autophagy" }
+            ]
+        };
+
+        let currentSchedule = 1;
+        let countdownTimer;
+        let totalSeconds = 16 * 3600;
+
+        // Init: Load Schedule 1 on startup
+        document.addEventListener('DOMContentLoaded', () => { switchSchedule(1); });
+
+        // Schedule Toggle functionality
+        function switchSchedule(option) {
+            currentSchedule = option;
+            const b1 = document.getElementById("b1");
+            const b2 = document.getElementById("b2");
+            
+            // UI Toggle logic
+            if (option === 1) {
+                b1.className = "flex-1 py-2 text-xs font-semibold rounded-xl bg-emerald-500 text-gray-950";
+                b2.className = "flex-1 py-2 text-xs font-semibold rounded-xl text-gray-400";
+            } else {
+                b2.className = "flex-1 py-2 text-xs font-semibold rounded-xl bg-emerald-500 text-gray-950";
+                b1.className = "flex-1 py-2 text-xs font-semibold rounded-xl text-gray-400";
+            }
+            
+            // Build the schedule HTML
+            renderSchedule(option);
+        }
+
+        // Render Schedule functionality
+        function renderSchedule(option) {
+            const container = document.getElementById("meals-schedule-view");
+            const items = rawSchedule[option];
+            
+            container.innerHTML = items.map(item => `
+                <div class="bg-gray-900 border border-gray-800 rounded-xl p-4 flex items-start space-x-3 shadow-md">
+                    <div class="bg-gray-800 text-emerald-400 font-mono font-bold text-center px-2 py-1.5 text-xs rounded-lg mt-0.5">${item.time}</div>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-xs font-bold text-white">${item.title}</h4>
+                            <span class="text-[9px] px-2 py-0.5 rounded-full border border-gray-700 bg-gray-800 text-gray-400">${item.tag}</span>
+                        </div>
+                        <p class="text-[11px] text-gray-300 mt-1">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Fasting Timer functionality
+        function startClock(hours) {
+            clearInterval(countdownTimer);
+            totalSeconds = hours * 3600;
+            updateDisplay();
+            countdownTimer = setInterval(updateDisplay, 1000);
+            document.getElementById("p1-btn").innerText = "Resume Fast";
+        }
+
+        function updateDisplay() {
+            if (totalSeconds <= 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("time-display").innerHTML = "00:00:00";
+                return;
+            }
+            totalSeconds--;
+            let h = Math.floor(totalSeconds / 3600).toString().padStart(2, '0');
+            let m = Math.floor((totalSeconds % 3600) / 60).toString().padStart(2, '0');
+            let s = (totalSeconds % 60).toString().padStart(2, '0');
+            document.getElementById("time-display").innerHTML = `${h}:${m}:${secs}`;
+        }
+
+        function pauseClock() { clearInterval(countdownTimer); }
+
+    </script>
 
 </body>
 </html>
-
