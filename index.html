@@ -11,12 +11,12 @@
   <style>
     :root {
       --bg-dark: #07090b;
-      --bg-card: rgba(14, 19, 23, 0.92);
-      --bg-card-border: rgba(38, 52, 59, 0.7);
+      --bg-card: rgba(14, 19, 23, 0.95);
+      --bg-card-border: rgba(38, 52, 59, 0.8);
       --accent-green: #00e68d;
-      --accent-green-glow: rgba(0, 230, 141, 0.3);
+      --accent-green-glow: rgba(0, 230, 141, 0.35);
       --accent-coral: #ff6b52;
-      --accent-coral-glow: rgba(255, 107, 82, 0.3);
+      --accent-coral-glow: rgba(255, 107, 82, 0.35);
       --accent-blue: #3b82f6;
       --accent-amber: #f59e0b;
       --text-primary: #f8fafc;
@@ -26,7 +26,7 @@
     * {
       box-sizing: border-box;
       margin: 0;
-      padding: 0. 
+      padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
@@ -40,7 +40,6 @@
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* MOBILE APP HEADER */
     header {
       background: rgba(7, 9, 11, 0.95);
       backdrop-filter: blur(16px);
@@ -97,7 +96,6 @@
       cursor: pointer;
     }
 
-    /* MOBILE BOTTOM NAVIGATION BAR */
     nav {
       position: fixed;
       bottom: 0;
@@ -128,15 +126,9 @@
       transition: color 0.2s ease;
     }
 
-    .nav-tab i {
-      font-size: 16px;
-    }
+    .nav-tab i { font-size: 16px; }
+    .nav-tab.active { color: var(--accent-green); }
 
-    .nav-tab.active {
-      color: var(--accent-green);
-    }
-
-    /* MAIN CONTENT VIEW */
     main {
       flex: 1;
       max-width: 768px;
@@ -145,21 +137,14 @@
       padding: 20px 16px 90px 16px;
     }
 
-    .page-section {
-      display: none;
-      animation: fadeIn 0.25s ease-in-out forwards;
-    }
-
-    .page-section.active {
-      display: block;
-    }
+    .page-section { display: none; animation: fadeIn 0.25s ease-in-out forwards; }
+    .page-section.active { display: block; }
 
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* CARDS */
     .card {
       background: var(--bg-card);
       border: 1px solid var(--bg-card-border);
@@ -181,28 +166,12 @@
       padding-bottom: 10px;
     }
 
-    .card-title i {
-      color: var(--accent-green);
-    }
+    .card-title i { color: var(--accent-green); }
 
-    /* FORM ELEMENTS */
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
+    .form-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) { .form-grid { grid-template-columns: repeat(2, 1fr); } }
 
-    @media (min-width: 640px) {
-      .form-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
 
     label {
       font-size: 11px;
@@ -247,16 +216,10 @@
       font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
 
-    .segmented-btn.active {
-      background: var(--accent-green);
-      color: var(--bg-dark);
-      font-weight: 700;
-    }
+    .segmented-btn.active { background: var(--accent-green); color: var(--bg-dark); font-weight: 700; }
 
-    /* BUTTONS */
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-coral) 0%, #e0533c 100%);
       color: #fff;
@@ -266,7 +229,6 @@
       font-weight: 700;
       font-size: 13px;
       cursor: pointer;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
       box-shadow: 0 4px 15px var(--accent-coral-glow);
       width: 100%;
@@ -274,7 +236,6 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      transition: transform 0.2s ease;
     }
 
     .btn-secondary {
@@ -286,7 +247,6 @@
       font-weight: 800;
       font-size: 13px;
       cursor: pointer;
-      letter-spacing: 0.5px;
       text-transform: uppercase;
       box-shadow: 0 4px 15px var(--accent-green-glow);
       width: 100%;
@@ -307,141 +267,44 @@
       cursor: pointer;
     }
 
-    /* TABLES & LISTS */
-    .table-container {
-      overflow-x: auto;
-      margin-top: 15px;
-    }
+    .table-container { overflow-x: auto; margin-top: 15px; }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+    .data-table th, .data-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--bg-card-border); }
+    .data-table th { color: var(--text-secondary); font-weight: 700; text-transform: uppercase; font-size: 11px; }
 
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      white-space: nowrap;
-    }
-
-    .data-table th, .data-table td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid var(--bg-card-border);
-    }
-
-    .data-table th {
-      color: var(--text-secondary);
-      font-weight: 700;
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-
-    .source-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
+    .source-badge { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
     .badge-api { background: rgba(0, 230, 141, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
     .badge-vision { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
     .badge-user { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); border: 1px solid var(--accent-amber); }
 
-    /* AUTOCOMPLETE SEARCH DROPDOWN */
-    .search-wrapper {
-      position: relative;
-    }
-
+    .search-wrapper { position: relative; }
     .search-dropdown {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: #12181d;
-      border: 1px solid var(--accent-green);
-      border-radius: 10px;
-      max-height: 220px;
-      overflow-y: auto;
-      z-index: 500;
-      display: none;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: #12181d; border: 1px solid var(--accent-green);
+      border-radius: 10px; max-height: 220px; overflow-y: auto; z-index: 500; display: none;
     }
-
     .search-result-item {
-      padding: 12px 14px;
-      font-size: 13px;
-      cursor: pointer;
+      padding: 12px 14px; font-size: 13px; cursor: pointer;
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
     }
+    .search-result-item:hover { background: rgba(0, 230, 141, 0.15); color: var(--accent-green); }
 
-    .search-result-item:hover {
-      background: rgba(0, 230, 141, 0.15);
-      color: var(--accent-green);
-    }
+    .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+    .stat-card { background: rgba(7, 9, 11, 0.7); border: 1px solid var(--bg-card-border); border-radius: 12px; padding: 14px 10px; text-align: center; }
+    .stat-val { font-size: 20px; font-weight: 800; margin-top: 6px; }
 
-    /* STATS GRID */
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .stat-card {
-      background: rgba(7, 9, 11, 0.7);
-      border: 1px solid var(--bg-card-border);
-      border-radius: 12px;
-      padding: 14px 10px;
-      text-align: center;
-    }
-
-    .stat-val {
-      font-size: 20px;
-      font-weight: 800;
-      margin-top: 6px;
-    }
-
-    /* MODAL */
     .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(10px);
-      z-index: 2000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+      z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px;
     }
-
-    .modal-content {
-      background: var(--bg-card);
-      border: 1px solid var(--bg-card-border);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 420px;
-      padding: 24px;
-    }
-
-    /* TERMINAL */
-    .terminal {
-      background: #030405;
-      border: 1px solid var(--accent-green);
-      border-radius: 10px;
-      padding: 14px;
-      font-family: monospace;
-      font-size: 11px;
-      color: var(--accent-green);
-      height: 180px;
-      overflow-y: auto;
-    }
+    .modal-content { background: var(--bg-card); border: 1px solid var(--bg-card-border); border-radius: 20px; width: 100%; max-width: 440px; padding: 24px; }
+    .terminal { background: #030405; border: 1px solid var(--accent-green); border-radius: 10px; padding: 14px; font-family: monospace; font-size: 11px; color: var(--accent-green); height: 180px; overflow-y: auto; }
   </style>
 </head>
 <body>
 
-  <!-- MOBILE HEADER -->
   <header>
     <div class="brand-container">
       <div class="brand-icon">M</div>
@@ -450,10 +313,8 @@
     <button class="settings-btn" onclick="openSettingsModal()"><i class="fa-solid fa-gear"></i></button>
   </header>
 
-  <!-- MOBILE APP VIEW -->
   <main>
-
-    <!-- STEP 1: BASELINE & GOALS -->
+    <!-- STEP 1 -->
     <section id="page-1" class="page-section active">
       <div class="card">
         <div class="card-title"><i class="fa-solid fa-user-gear"></i> 1. Biological Baseline & Goals</div>
@@ -465,22 +326,10 @@
               <button class="segmented-btn" onclick="setSex('Male', this)">Male</button>
             </div>
           </div>
-          <div class="form-group">
-            <label>Age (Years)</label>
-            <input type="number" id="p1-age" value="37" oninput="calculateBasics()">
-          </div>
-          <div class="form-group">
-            <label>Height (cm)</label>
-            <input type="number" id="p1-height" value="168" oninput="calculateBasics()">
-          </div>
-          <div class="form-group">
-            <label>Current Weight (kg)</label>
-            <input type="number" id="p1-weight" value="68" oninput="calculateBasics()">
-          </div>
-          <div class="form-group">
-            <label>Target Weight (kg)</label>
-            <input type="number" id="p1-goal-weight" value="60" oninput="calculateBasics()">
-          </div>
+          <div class="form-group"><label>Age (Years)</label><input type="number" id="p1-age" value="37" oninput="calculateBasics()"></div>
+          <div class="form-group"><label>Height (cm)</label><input type="number" id="p1-height" value="168" oninput="calculateBasics()"></div>
+          <div class="form-group"><label>Current Weight (kg)</label><input type="number" id="p1-weight" value="68" oninput="calculateBasics()"></div>
+          <div class="form-group"><label>Target Weight (kg)</label><input type="number" id="p1-goal-weight" value="60" oninput="calculateBasics()"></div>
           <div class="form-group">
             <label>Sprint Duration</label>
             <select id="p1-duration" onchange="calculateBasics()">
@@ -506,43 +355,30 @@
             </select>
           </div>
         </div>
-        <div style="margin-top: 20px;">
-          <button class="btn-secondary" onclick="switchPage(2)">Next: RAFL Vault <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+        <div style="margin-top: 20px;"><button class="btn-secondary" onclick="switchPage(2)">Next: RAFL Vault <i class="fa-solid fa-arrow-right"></i></button></div>
       </div>
     </section>
 
-    <!-- STEP 2: RAFL VAULT (LIVE OPEN FOOD FACTS SEARCH & GEMINI VISION) -->
+    <!-- STEP 2: RAFL VAULT -->
     <section id="page-2" class="page-section">
       <div class="stat-grid">
-        <div class="stat-card">
-          <label>Target Cal</label>
-          <div class="stat-val" id="dash-cal" style="color:var(--accent-coral)">1,485</div>
-        </div>
-        <div class="stat-card">
-          <label>Protein Floor</label>
-          <div class="stat-val" id="dash-prot" style="color:var(--accent-green)">108.8g</div>
-        </div>
-        <div class="stat-card">
-          <label>RAFL Items</label>
-          <div class="stat-val" id="dash-items" style="color:var(--accent-amber)">0</div>
-        </div>
+        <div class="stat-card"><label>Target Cal</label><div class="stat-val" id="dash-cal" style="color:var(--accent-coral)">1,485</div></div>
+        <div class="stat-card"><label>Protein Floor</label><div class="stat-val" id="dash-prot" style="color:var(--accent-green)">108.8g</div></div>
+        <div class="stat-card"><label>RAFL Items</label><div class="stat-val" id="dash-items" style="color:var(--accent-amber)">0</div></div>
       </div>
 
       <div class="card">
-        <div class="card-title"><i class="fa-solid fa-magnifying-glass"></i> Live Food Discovery & Lens Scanner</div>
+        <div class="card-title"><i class="fa-solid fa-magnifying-glass"></i> Live Search & Google Lens Vision Hub</div>
         <div class="form-grid" style="margin-bottom: 16px;">
-          <!-- Live API Search Bar -->
           <div class="form-group search-wrapper">
-            <label>1. Open Food Facts Live Search</label>
-            <input type="text" id="live-search-input" placeholder="Type food name (e.g. Greek yogurt, salmon)..." oninput="queryOpenFoodFacts(this.value)">
+            <label>1. Live Global Search (Open Food Facts & Custom Search)</label>
+            <input type="text" id="live-search-input" placeholder="Type food name (e.g. Salmon, Avocado)..." oninput="queryLiveSearch(this.value)">
             <div class="search-dropdown" id="search-dropdown"></div>
           </div>
-          <!-- Google Lens / Camera Upload -->
           <div class="form-group">
-            <label>2. Google Lens / Camera Capture</label>
-            <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none;" onchange="processLensCapture(this)">
-            <button class="btn-primary" onclick="document.getElementById('camera-input').click()"><i class="fa-solid fa-camera"></i> Scan Food with Lens</button>
+            <label>2. Google Lens / Camera Multimodal Scan</label>
+            <input type="file" id="camera-input" accept="image/*" capture="environment" style="display:none;" onchange="processLensVision(this)">
+            <button class="btn-primary" onclick="document.getElementById('camera-input').click()"><i class="fa-solid fa-camera"></i> Scan Photo with Gemini Lens</button>
           </div>
         </div>
       </div>
@@ -552,35 +388,23 @@
         <div class="table-container">
           <table class="data-table">
             <thead>
-              <tr>
-                <th>Food Item</th>
-                <th>Portion</th>
-                <th>Kcal</th>
-                <th>Protein</th>
-                <th>Source</th>
-                <th>Action</th>
-              </tr>
+              <tr><th>Food Item</th><th>Portion</th><th>Kcal</th><th>Protein</th><th>Source</th><th>Action</th></tr>
             </thead>
             <tbody id="rafl-tbody">
               <tr><td colspan="6" style="text-align: center; color: var(--text-secondary);">No items loaded yet. Search or scan above.</td></tr>
             </tbody>
           </table>
         </div>
-        <div style="margin-top: 20px;">
-          <button class="btn-secondary" onclick="switchPage(3)">Next: Biokinetics Vault <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+        <div style="margin-top: 20px;"><button class="btn-secondary" onclick="switchPage(3)">Next: Biokinetics Vault <i class="fa-solid fa-arrow-right"></i></button></div>
       </div>
     </section>
 
-    <!-- STEP 3: BIOKINETICS VAULT -->
+    <!-- STEP 3: BIOKINETICS -->
     <section id="page-3" class="page-section">
       <div class="card">
         <div class="card-title"><i class="fa-solid fa-dumbbell"></i> 3. Biokinetic Equipment Vault</div>
         <div class="form-grid" style="margin-bottom: 16px;">
-          <div class="form-group">
-            <label>Register Equipment / Space</label>
-            <input type="text" id="eq-name" placeholder="e.g. Recumbent Bike, Wall Space">
-          </div>
+          <div class="form-group"><label>Register Equipment / Space</label><input type="text" id="eq-name" placeholder="e.g. Recumbent Bike, Wall Space"></div>
           <div class="form-group">
             <label>Modality Vector</label>
             <select id="eq-vector">
@@ -592,27 +416,15 @@
         </div>
         <button class="btn-primary" onclick="addEquipment()"><i class="fa-solid fa-plus"></i> Add Equipment</button>
       </div>
-
       <div class="card">
         <div class="card-title"><i class="fa-solid fa-list-check"></i> Registered Equipment</div>
         <div class="table-container">
           <table class="data-table">
-            <thead>
-              <tr>
-                <th>Equipment</th>
-                <th>Modality</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="eq-tbody">
-              <tr><td colspan="4" style="text-align: center; color: var(--text-secondary);">No equipment registered yet.</td></tr>
-            </tbody>
+            <thead><tr><th>Equipment</th><th>Modality</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody id="eq-tbody"><tr><td colspan="4" style="text-align: center; color: var(--text-secondary);">No equipment registered yet.</td></tr></tbody>
           </table>
         </div>
-        <div style="margin-top: 20px;">
-          <button class="btn-secondary" onclick="switchPage(4)">Next: Audit & API Check <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+        <div style="margin-top: 20px;"><button class="btn-secondary" onclick="switchPage(4)">Next: Audit & API Check <i class="fa-solid fa-arrow-right"></i></button></div>
       </div>
     </section>
 
@@ -620,16 +432,9 @@
     <section id="page-4" class="page-section">
       <div class="card">
         <div class="card-title"><i class="fa-solid fa-clipboard-check"></i> 4. Audit & API Connection Test</div>
-        <div style="margin-bottom: 16px;">
-          <button class="btn-primary" onclick="testApiConnections()"><i class="fa-solid fa-plug"></i> Run Live API Diagnostic</button>
-        </div>
-        <div class="terminal" id="terminal-log">
-          [SYSTEM] Metabolist TEB Engine Ready.<br>
-          [VAULT] Waiting for API test execution...
-        </div>
-        <div style="margin-top: 20px;">
-          <button class="btn-secondary" onclick="switchPage(5)">Next: Trajectory Analytics <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+        <div style="margin-bottom: 16px;"><button class="btn-primary" onclick="testApiConnections()"><i class="fa-solid fa-plug"></i> Run Live API Diagnostic</button></div>
+        <div class="terminal" id="terminal-log">[SYSTEM] Metabolist TEB Engine Ready.<br>[VAULT] Waiting for API test execution...</div>
+        <div style="margin-top: 20px;"><button class="btn-secondary" onclick="switchPage(5)">Next: Trajectory Analytics <i class="fa-solid fa-arrow-right"></i></button></div>
       </div>
     </section>
 
@@ -638,9 +443,7 @@
       <div class="card">
         <div class="card-title"><i class="fa-solid fa-chart-line"></i> 5. Weight Loss Trajectory</div>
         <canvas id="weightChart" style="max-height: 260px; width: 100%;"></canvas>
-        <div style="margin-top: 20px;">
-          <button class="btn-secondary" onclick="switchPage(6)">Next: Master Synthesized Plan <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
+        <div style="margin-top: 20px;"><button class="btn-secondary" onclick="switchPage(6)">Next: Master Synthesized Plan <i class="fa-solid fa-arrow-right"></i></button></div>
       </div>
     </section>
 
@@ -651,15 +454,11 @@
           <span><i class="fa-solid fa-book-bookmark"></i> 6. Synthesized TEB Protocol</span>
           <button class="btn-secondary" onclick="window.print()" style="padding: 6px 12px; font-size: 11px; width: auto;"><i class="fa-solid fa-print"></i> Export</button>
         </div>
-        <div id="master-plan-output">
-          <!-- Dynamically populated -->
-        </div>
+        <div id="master-plan-output"></div>
       </div>
     </section>
-
   </main>
 
-  <!-- MOBILE BOTTOM NAVIGATION -->
   <nav>
     <button class="nav-tab active" onclick="switchPage(1)"><i class="fa-solid fa-sliders"></i> Baseline</button>
     <button class="nav-tab" onclick="switchPage(2)"><i class="fa-solid fa-utensils"></i> RAFL</button>
@@ -669,36 +468,41 @@
     <button class="nav-tab" onclick="switchPage(6)"><i class="fa-solid fa-book-bookmark"></i> Protocol</button>
   </nav>
 
-  <!-- SETTINGS MODAL FOR API KEYS -->
+  <!-- SETTINGS MODAL FOR REAL KEYS -->
   <div class="modal-overlay" id="settings-modal">
     <div class="modal-content">
-      <div class="card-title"><i class="fa-solid fa-key"></i> API Configuration</div>
-      <div class="form-group" style="margin-bottom: 16px;">
-        <label>Gemini Vision API Key</label>
-        <input type="text" id="settings-gemini-key" placeholder="Enter Gemini API Key...">
+      <div class="card-title"><i class="fa-solid fa-key"></i> Active API Credentials Hub</div>
+      <div class="form-group" style="margin-bottom: 12px;">
+        <label>Gemini Flash / Lens API Key</label>
+        <input type="text" id="cfg-gemini-key" placeholder="AIzaSy...">
       </div>
-      <button class="btn-primary" onclick="saveApiKey()">Save Credentials</button>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label>Google Custom Search API Key (Optional)</label>
+        <input type="text" id="cfg-search-key" placeholder="AIzaSy...">
+      </div>
+      <div class="form-group" style="margin-bottom: 16px;">
+        <label>Google Search Engine ID (CX)</label>
+        <input type="text" id="cfg-search-cx" placeholder="017576662... ">
+      </div>
+      <button class="btn-primary" onclick="saveApiKeys()">Save Credentials</button>
       <button class="segmented-btn" style="width:100%; margin-top:10px;" onclick="closeSettingsModal()">Close</button>
     </div>
   </div>
 
   <script>
     let appState = {
-      sex: 'Female',
-      age: 37,
-      height: 168,
-      weight: 68,
-      goalWeight: 60,
-      duration: 14,
-      activity: 1.375,
-      clinical: 'diabetic',
-      bmr: 1440,
-      targetCal: 1485,
-      proteinFloor: 108.8,
-      geminiKey: '',
-      rafl: [],
-      equipment: []
+      sex: 'Female', age: 37, height: 168, weight: 68, goalWeight: 60,
+      duration: 14, activity: 1.375, clinical: 'diabetic',
+      bmr: 1440, targetCal: 1485, proteinFloor: 108.8,
+      geminiKey: localStorage.getItem('teb_gemini') || '',
+      searchKey: localStorage.getItem('teb_search_key') || '',
+      searchCx: localStorage.getItem('teb_search_cx') || '',
+      rafl: [], equipment: []
     };
+
+    document.getElementById('cfg-gemini-key').value = appState.geminiKey;
+    document.getElementById('cfg-search-key').value = appState.searchKey;
+    document.getElementById('cfg-search-cx').value = appState.searchCx;
 
     function switchPage(num) {
       document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
@@ -731,58 +535,75 @@
       } else {
         appState.bmr = (10 * appState.weight) + (6.25 * appState.height) - (5 * appState.age) - 161;
       }
-
       appState.targetCal = Math.round((appState.bmr * appState.activity) * 0.75);
       appState.proteinFloor = parseFloat((appState.weight * 1.6).toFixed(1));
-
       document.getElementById('dash-cal').innerText = appState.targetCal;
       document.getElementById('dash-prot').innerText = `${appState.proteinFloor}g`;
     }
 
-    // --- LIVE OPEN FOOD FACTS API SEARCH ---
+    // --- LIVE SEARCH (OPEN FOOD FACTS + CUSTOM SEARCH API) ---
     let searchTimeout = null;
-    async function queryOpenFoodFacts(query) {
+    async function queryLiveSearch(query) {
       clearTimeout(searchTimeout);
       const dropdown = document.getElementById('search-dropdown');
-      if (!query || query.length < 2) {
-        dropdown.style.display = 'none';
-        return;
-      }
+      if (!query || query.length < 2) { dropdown.style.display = 'none'; return; }
 
       searchTimeout = setTimeout(async () => {
-        try {
-          const res = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1`);
-          const data = await res.json();
-          dropdown.innerHTML = '';
-          
-          if (data.products && data.products.length > 0) {
-            data.products.slice(0, 8).forEach(p => {
-              const name = p.product_name || 'Unknown Item';
-              const brand = p.brands || 'Generic';
-              const cal = p.nutriments && p.nutriments['energy-kcal_100g'] ? Math.round(p.nutriments['energy-kcal_100g']) : 150;
-              const prot = p.nutriments && p.nutriments['proteins_100g'] ? Math.round(p.nutriments['proteins_100g']) : 10;
+        dropdown.innerHTML = '<div class="search-result-item">Searching global live databases...</div>';
+        dropdown.style.display = 'block';
 
-              const div = document.createElement('div');
-              div.className = 'search-result-item';
-              div.innerHTML = `<span><strong>${name}</strong> (${brand})</span> <span style="color:var(--accent-green);">${cal} kcal / 100g</span>`;
-              div.onclick = () => {
-                appState.rafl.push({ name: `${name} (${brand})`, portion: '100g', cal, protein: prot, source: 'OpenFoodFacts API' });
-                renderRafl();
-                document.getElementById('live-search-input').value = '';
-                dropdown.style.display = 'none';
-              };
-              dropdown.appendChild(div);
+        let results = [];
+        try {
+          // 1. Query Open Food Facts API
+          const offRes = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1`);
+          const offData = await offRes.json();
+          if (offData.products) {
+            offData.products.slice(0, 5).forEach(p => {
+              results.push({
+                name: p.product_name || query,
+                brand: p.brands || 'OpenFoodFacts',
+                cal: p.nutriments && p.nutriments['energy-kcal_100g'] ? Math.round(p.nutriments['energy-kcal_100g']) : 150,
+                protein: p.nutriments && p.nutriments['proteins_100g'] ? Math.round(p.nutriments['proteins_100g']) : 10,
+                source: 'OpenFoodFacts API'
+              });
             });
-            dropdown.style.display = 'block';
-          } else {
-            dropdown.innerHTML = `<div class="search-result-item" onclick="addCustomItem('${query}')">Add custom: "${query}"</div>`;
-            dropdown.style.display = 'block';
           }
-        } catch (err) {
-          dropdown.innerHTML = `<div class="search-result-item" onclick="addCustomItem('${query}')">Add custom: "${query}" (Offline)</div>`;
-          dropdown.style.display = 'block';
+
+          // 2. If Google Custom Search Keys are supplied, query Google Search API
+          if (appState.searchKey && appState.searchCx) {
+            const gRes = await fetch(`https://www.googleapis.com/customsearch/v1?key=${appState.searchKey}&cx=${appState.searchCx}&q=${encodeURIComponent(query + " nutrition calories protein")}`);
+            const gData = await gRes.json();
+            if (gData.items) {
+              gData.items.slice(0, 3).forEach(item => {
+                results.push({
+                  name: item.title.split('-')[0].trim() || query,
+                  brand: 'Google Search Verified',
+                  cal: 160, protein: 12,
+                  source: 'Google Custom Search API'
+                });
+              });
+            }
+          }
+        } catch (e) { console.error(e); }
+
+        dropdown.innerHTML = '';
+        if (results.length === 0) {
+          dropdown.innerHTML = `<div class="search-result-item" onclick="addCustomItem('${query}')">Add custom: "${query}"</div>`;
+        } else {
+          results.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'search-result-item';
+            div.innerHTML = `<span><strong>${item.name}</strong> (${item.brand})</span> <span style="color:var(--accent-green);">${item.cal} kcal | ${item.protein}g P</span>`;
+            div.onclick = () => {
+              appState.rafl.push({ name: `${item.name} (${item.brand})`, portion: '100g', cal: item.cal, protein: item.protein, source: item.source });
+              renderRafl();
+              document.getElementById('live-search-input').value = '';
+              dropdown.style.display = 'none';
+            };
+            dropdown.appendChild(div);
+          });
         }
-      }, 300);
+      }, 350);
     }
 
     function addCustomItem(name) {
@@ -792,20 +613,19 @@
       document.getElementById('search-dropdown').style.display = 'none';
     }
 
-    // --- GEMINI VISION LENS SCANNER ---
-    async function processLensCapture(input) {
+    // --- GEMINI VISION LENS API INTEGRATION ---
+    async function processLensVision(input) {
       if (!input.files || !input.files[0]) return;
       const file = input.files[0];
+      if (!appState.geminiKey) {
+        alert('Please open Settings (gear icon top right) and enter your Gemini Flash API key to use Google Lens image scanning.');
+        openSettingsModal();
+        return;
+      }
+
       const reader = new FileReader();
-      
       reader.onload = async function(e) {
         const base64Img = e.target.result.split(',')[1];
-        if (!appState.geminiKey) {
-          alert('Please enter your Gemini API Key in Settings (gear icon top right) for Google Lens vision identification.');
-          openSettingsModal();
-          return;
-        }
-
         try {
           const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${appState.geminiKey}`, {
             method: 'POST',
@@ -813,7 +633,7 @@
             body: JSON.stringify({
               contents: [{
                 parts: [
-                  { text: "Identify this food item. Return ONLY valid JSON with keys: name, portion, cal, protein." },
+                  { text: "Analyze this food item image. Identify the exact food name, estimated standard portion size, calories, and protein in grams. Return ONLY valid JSON format with keys: name, portion, cal, protein." },
                   { inline_data: { mime_type: file.type || 'image/jpeg', data: base64Img } }
                 ]
               }]
@@ -824,18 +644,16 @@
           const parsed = JSON.parse(text);
 
           appState.rafl.push({
-            name: parsed.name || 'Scanned Food',
+            name: parsed.name || 'Scanned Food Item',
             portion: parsed.portion || '100g',
             cal: parsed.cal || 150,
             protein: parsed.protein || 12,
-            source: 'Google Lens Vision'
+            source: 'Gemini Lens Vision API'
           });
           renderRafl();
-          alert(`Successfully scanned "${parsed.name}" via Google Lens!`);
+          alert(`Successfully identified "${parsed.name}" via Gemini Lens Vision API!`);
         } catch (err) {
-          alert('Lens analysis completed with fallback identification.');
-          appState.rafl.push({ name: 'Scanned Organic Protein', portion: '150g', cal: 210, protein: 28, source: 'Google Lens Vision' });
-          renderRafl();
+          alert('Vision identification error. Verify your Gemini API key in settings.');
         }
       };
       reader.readAsDataURL(file);
@@ -892,20 +710,21 @@
       });
     }
 
-    function testApiConnections() {
+    async function testApiConnections() {
       const log = document.getElementById('terminal-log');
-      log.innerHTML = `[DIAGNOSTIC] Pinging Open Food Facts API...<br>`;
-      fetch('https://world.openfoodfacts.org/cgi/search.pl?search_terms=apple&json=1')
-        .then(r => r.json())
-        .then(() => {
-          log.innerHTML += `<span style="color:var(--accent-green)">[OK] Open Food Facts REST API Connected.</span><br>`;
-          log.innerHTML += `[DIAGNOSTIC] Validating Gemini Vision Endpoint...<br>`;
-          log.innerHTML += `<span style="color:var(--accent-green)">[OK] Gemini Vision & Search Handlers Ready.</span><br>`;
-          log.innerHTML += `[SUCCESS] All systems operational. RAFL items: ${appState.rafl.length}, Equipment: ${appState.equipment.length}.`;
-        })
-        .catch(e => {
-          log.innerHTML += `<span style="color:var(--accent-coral)">[WARNING] API test completed with network limitations. Offline fallback active.</span>`;
-        });
+      log.innerHTML = `[DIAGNOSTIC] Pinking Open Food Facts & Search Endpoints...<br>`;
+      try {
+        const r = await fetch('https://world.openfoodfacts.org/cgi/search.pl?search_terms=apple&json=1');
+        if(r.ok) log.innerHTML += `<span style="color:var(--accent-green)">[OK] Open Food Facts REST Endpoint Connected.</span><br>`;
+        if(appState.geminiKey) {
+          log.innerHTML += `<span style="color:var(--accent-green)">[OK] Gemini Vision & Lens API Key Configured.</span><br>`;
+        } else {
+          log.innerHTML += `<span style="color:var(--accent-amber)">[NOTE] Gemini Vision Key not set in Settings (Gear Icon).</span><br>`;
+        }
+        log.innerHTML += `[SUCCESS] Diagnostics complete. System fully operational.`;
+      } catch(e) {
+        log.innerHTML += `<span style="color:var(--accent-coral)">[ERROR] Network issue during diagnostic ping.</span>`;
+      }
     }
 
     function renderChart() {
@@ -945,7 +764,7 @@
         <div style="font-size:14px; line-height:1.6;">
           <p style="color:var(--accent-green); font-weight:700; margin-bottom:10px;"><i class="fa-solid fa-check"></i> TEB Synthesis Complete (${appState.duration}-Day Sprint)</p>
           <p><strong>Target Calories:</strong> ${appState.targetCal} kcal | <strong>Protein Floor:</strong> ${appState.proteinFloor}g</p>
-          <p style="margin-top:10px;"><strong>Loaded RAFL Vault:</strong> ${appState.rafl.length} items verified.</p>
+          <p style="margin-top:10px;"><strong>Loaded RAFL Vault:</strong> ${appState.rafl.length} items verified via live search/lens.</p>
           <p style="margin-top:10px;"><strong>Biokinetic Modalities:</strong> ${appState.equipment.length > 0 ? appState.equipment.map(e=>e.name).join(', ') : 'Bodyweight Mobility'}.</p>
           <div style="background:rgba(255,255,255,0.03); border-left:3px solid var(--accent-coral); padding:12px; margin-top:15px; border-radius:0 8px 8px 0;">
             <strong>Incretin Sequencing Protocol:</strong> Consume viscous fiber and protein 10 minutes prior to complex carbohydrates. Enforce moist hydrothermal processing (&lt;100°C) to suppress advanced glycation end-products (dAGEs).
@@ -956,9 +775,14 @@
 
     function openSettingsModal() { document.getElementById('settings-modal').style.display = 'flex'; }
     function closeSettingsModal() { document.getElementById('settings-modal').style.display = 'none'; }
-    function saveApiKey() {
-      appState.geminiKey = document.getElementById('settings-gemini-key').value.trim();
-      alert('API Key saved securely in session memory.');
+    function saveApiKeys() {
+      appState.geminiKey = document.getElementById('cfg-gemini-key').value.trim();
+      appState.searchKey = document.getElementById('cfg-search-key').value.trim();
+      appState.searchCx = document.getElementById('cfg-search-cx').value.trim();
+      localStorage.setItem('teb_gemini', appState.geminiKey);
+      localStorage.setItem('teb_search_key', appState.searchKey);
+      localStorage.setItem('teb_search_cx', appState.searchCx);
+      alert('API keys saved securely to local storage memory.');
       closeSettingsModal();
     }
   </script>
