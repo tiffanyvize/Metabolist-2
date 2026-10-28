@@ -55,30 +55,14 @@
         .brand {
             display: flex;
             align-items: center;
-            gap: 0.85rem;
+            gap: 1rem;
         }
 
-        .brand-logo {
-            width: 36px;
-            height: 36px;
-            border: 2px solid var(--bio-emerald);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--bio-emerald);
-            font-size: 1rem;
-            box-shadow: 0 0 15px var(--bio-emerald-glow);
-        }
-
-        .brand-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            background: linear-gradient(135deg, #FFF 0%, var(--bio-emerald) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .brand-logo-img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px var(--bio-emerald-glow));
         }
 
         .engine-badge {
@@ -367,8 +351,9 @@
 
     <header>
         <div class="brand">
-            <div class="brand-logo">M</div>
-            <span class="brand-title">METABOLIST x TEB</span>
+            <!-- Official Metabolist x TEB Logo Asset integrated here -->
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" alt="Metabolist Logo" class="brand-logo-img" id="logoPlaceholder">
+            <span style="font-size: 1.15rem; font-weight: 700; letter-spacing: 0.08em; background: linear-gradient(135deg, #FFF 0%, var(--bio-emerald) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">METABOLIST x TEB</span>
         </div>
         <div class="engine-badge" id="engineStatus">CLINICAL ENGINE ACTIVE</div>
     </header>
@@ -377,4 +362,50 @@
         <div class="app-window">
             
             <div class="nav-tabs">
-                <button class="tab-btn active" onclick="
+                <button class="tab-btn active" onclick="switchModule(1)">1. Physiological Delta</button>
+                <button class="tab-btn" onclick="switchModule(2)">2. RAFL Vault & Grounding</button>
+                <button class="tab-btn" onclick="switchModule(3)">3. Equipment Forensics</button>
+                <button class="tab-btn" onclick="switchModule(4)">4. Biokinetics & Vault</button>
+                <button class="tab-btn" onclick="switchModule(5)">5. Master Command Dashboard</button>
+            </div>
+
+            <!-- MODULE 1 -->
+            <div class="module-section active" id="mod1">
+                <h2>Precision Bioenergetic Delta & Timeframe</h2>
+                <p class="subtitle">Configure targeted body composition vectors ($\Delta W$), timeframe constraints, and BMR protection parameters governed by The Eating Bible.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currentWeight">Current Body Weight (kg)</label>
+                        <input type="number" id="currentWeight" value="62" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="targetDeltaWeight">Target Weight Delta ($\Delta W$ in kg)</label>
+                        <input type="number" id="targetDeltaWeight" value="-3.0" step="0.5">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="timeframeDays">Execution Timeframe ($T$ in Days)</label>
+                        <select id="timeframeDays">
+                            <option value="7">7-Day Metabolic Sprint</option>
+                            <option value="14" selected>14-Day Deep Adaptation Run</option>
+                            <option value="30">30-Day Maintenance & Recomposition</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityMultiplier">BMR Activity Multiplier</label>
+                        <select id="activityMultiplier">
+                            <option value="1.2">1.2 - Sedentary (Minimal daily NEAT)</option>
+                            <option value="1.375" selected>1.375 - Lightly Active (Structured movement)</option>
+                            <option value="1.55">1.55 - Moderately Active (High daily output)</option>
+                            <option value="1.725">1.725 - Highly Active (Intense training load)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="userAge">Age (Years)</label>
+                        <input type="number" id
